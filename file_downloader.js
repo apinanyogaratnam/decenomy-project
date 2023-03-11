@@ -1,6 +1,7 @@
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
+import { exit } from 'process';
 
 class FileDownloader {
   constructor(url, filename) {
@@ -19,7 +20,7 @@ class FileDownloader {
         console.log('localFileSize', localFileSize);
       if (parseInt(remoteFileSize) === parseInt(localFileSize)) {
         console.log(`File "${this.filename}" already exists and has the same size.`);
-        return;
+        exit(0);
       }
     }
 
