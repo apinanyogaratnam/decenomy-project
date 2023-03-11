@@ -1,4 +1,9 @@
 import Wait from './wait.js';
 
-const myObj = new Wait();
-myObj.getOk().then(result => console.log(result));
+async function main() {
+  const myObj = new Wait();
+  const result = await myObj.getOk();
+  console.log(result);
+}
+
+main();
