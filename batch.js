@@ -1,11 +1,15 @@
 import FileDownloader from './file_downloader.js';
+import fs from 'fs';
+import path from 'path';
 
-const urls = [
-  'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
-  'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
-  'https://raw.githubusercontent.com/apinanyogaratnam/decenomy-project/main/file_downloader.js',
-  'https://raw.githubusercontent.com/apinanyogaratnam/decenomy-project/main/batch.js',
-];
+const urls = {
+  'dummy.pdf': 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+  'video.mp4': 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+  'file_downloader.js': 'https://raw.githubusercontent.com/apinanyogaratnam/decenomy-project/main/file_downloader.js',
+  'batch.js': 'https://raw.githubusercontent.com/apinanyogaratnam/decenomy-project/main/batch.js',
+};
+
+
 
 const downloadsDir = './downloads';
 
@@ -15,10 +19,16 @@ if (!fs.existsSync(downloadsDir)) {
 }
 
 // Create an array of promises that download each URL
-const downloadPromises = urls.map(url => {
-  const filename = path.join(downloadsDir, path.basename(url));
-  const downloader = new FileDownloader(url, filename);
-  return downloader.download();
+// const downloadPromises = urls.map(url => {
+//   const filename = path.join(downloadsDir, path.basename(url));
+//   const downloader = new FileDownloader(url, filename);
+//   return downloader.download();
+// });
+
+const downloadPromises = Object.keys(urls).map(filename => {
+    const url = urls[filename];
+    const downloader = new FileDownloader(url, filename);
+    return downloader.download();
 });
 
 // Wait for all promises to resolve and log completion message

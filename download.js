@@ -9,7 +9,7 @@ if (!fs.existsSync(downloadsDir)) {
 }
 
 const url = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
-const filename = 'downloads/file.pdf';
+const filename = 'file.pdf';
 
 const downloader = new FileDownloader(url, filename);
 
