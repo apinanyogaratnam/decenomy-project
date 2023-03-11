@@ -18,13 +18,6 @@ if (!fs.existsSync(downloadsDir)) {
   fs.mkdirSync(downloadsDir);
 }
 
-// Create an array of promises that download each URL
-// const downloadPromises = urls.map(url => {
-//   const filename = path.join(downloadsDir, path.basename(url));
-//   const downloader = new FileDownloader(url, filename);
-//   return downloader.download();
-// });
-
 const downloadPromises = Object.keys(urls).map(filename => {
     const url = urls[filename];
     const downloader = new FileDownloader(url, filename);

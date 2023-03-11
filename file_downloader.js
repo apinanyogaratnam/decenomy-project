@@ -10,7 +10,7 @@ class FileDownloader {
   }
 
   async download() {
-    const localFilePath = path.join(process.cwd(), this.filename);
+    const localFilePath = path.join(process.cwd(), `downloads/${this.filename}`);
     const remoteFileSize = (await axios.get(this.url)).headers['content-length'];
 
     if (fs.existsSync(localFilePath)) {
