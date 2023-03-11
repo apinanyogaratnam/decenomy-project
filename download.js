@@ -8,10 +8,10 @@ if (!fs.existsSync(downloadsDir)) {
   fs.mkdirSync(downloadsDir);
 }
 
-const url = 'https://filesamples.com/samples/document/txt/sample3.txt';
-const filename = 'downloads/file.txt';
+const url = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+const filename = 'downloads/file.pdf';
 
-const downloader = new FileDownloader('https://filesamples.com/samples/document/txt/sample3.txt', filename);
+const downloader = new FileDownloader(url, filename);
 
 downloader.download().then(() => {
   console.log(`File "${filename}" downloaded successfully.`);

@@ -10,10 +10,12 @@ class FileDownloader {
 
   async download() {
     const localFilePath = path.join(process.cwd(), this.filename);
-    const remoteFileSize = (await axios.head(this.url)).headers['content-length'];
+    const remoteFileSize = (await axios.get(this.url)).headers['content-length'];
+    console.log('remoteFileSize', remoteFileSize);
 
     if (fs.existsSync(localFilePath)) {
       const localFileSize = fs.statSync(localFilePath).size;
+        console.log('localFileSize', localFileSize);
       if (remoteFileSize === localFileSize) {
         console.log(`File "${this.filename}" already exists and has the same size.`);
         return;
